@@ -1,26 +1,242 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: 'DM Sans', sans-serif;
+  --font-serif: 'Lora', serif;
+  --color-background: #ffffff;
+  --color-foreground: #1d1c1a;
+  --color-muted: #dfddd6;
+  --color-muted-light: #f8f7f5;
+  --color-muted-foreground: #888680;
+  --color-primary: #d14424;
+  --color-primary-dark: #c13e20;
+  --color-primary-foreground: #ffffff;
+  --color-destructive: #ef4444;
+  --color-destructive-dark: #d13e3e;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #16a34a;
+  --color-success-dark: #15803d;
+  --color-success-foreground: #ffffff;
+  --color-info: #0ea5e9;
+  --color-info-dark: #0891b2;
+  --color-info-foreground: #ffffff;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+::selection {
+  @apply bg-primary/10;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply antialiased font-sans;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+input,
+textarea {
+  @apply caret-primary;
+}
+
+li.FWEditor__listItemChecked,
+li.FWEditor__listItemUnchecked {
+  @apply list-none relative ml-1 pl-6 outline-none;
+}
+
+li.FWEditor__listItemChecked {
+  text-decoration: line-through;
+}
+
+li.FWEditor__listItemChecked:not(:has(ul)):not(:has(ol)):before,
+li.FWEditor__listItemUnchecked:not(:has(ul)):not(:has(ol)):before {
+  @apply content-[''] w-4 h-4 border border-muted rounded-sm absolute -left-0 top-1 cursor-pointer;
+}
+
+li.FWEditor__listItemChecked:before {
+  @apply bg-primary border-primary;
+}
+
+li.FWEditor__listItemChecked:after {
+  content: '';
+  cursor: pointer;
+  border-color: var(--color-primary-foreground);
+  border-style: solid;
+  position: absolute;
+  display: block;
+  top: 10px;
+  width: 5px;
+  left: 5px;
+  height: 10px;
+  transform: translateY(-50%) rotate(45deg);
+  border-width: 0 0.1em 0.1em 0;
+}
+
+.FWEditor__bold {
+  font-weight: bold;
+}
+
+.FWEditor__italic {
+  font-style: italic;
+}
+
+.FWEditor__underline {
+  text-decoration: underline;
+}
+
+
+
+@utility prose {
+  @apply font-serif;
+
+  blockquote {
+    @apply my-4 border-l-4 border-muted pl-4 !italic text-muted-foreground;
+  }
+
+  /* Lists */
+  ol,
+  ul {
+    @apply my-4;
+
+    ol,
+    ul {
+      @apply my-1;
+    }
+
+    li {
+      @apply my-1 ml-6;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p {
+        @apply my-1;
+      }
+    }
+  }
+
+  ol {
+    @apply list-decimal;
+
+    ol {
+      @apply list-[lower-alpha];
+
+      ol {
+        @apply list-[lower-roman];
+      }
+    }
+
+    li:has(ul) {
+      list-style-type: none;
+    }
+
+    li:has(ol) {
+      list-style-type: none;
+    }
+  }
+
+  ul {
+    @apply list-disc;
+
+    li:has(ul) {
+      list-style-type: none;
+    }
+
+    li:has(ol) {
+      list-style-type: none;
+    }
+
+    ul {
+      list-style-type: circle;
+
+      ul {
+        list-style-type: square;
+      }
+    }
+  }
+
+  /* Tables */
+
+  table {
+    @apply my-4 w-full table-auto border-collapse text-left text-sm/6;
+
+    caption {
+      @apply mt-2 caption-bottom text-left text-sm/6;
+    }
+
+    thead {
+      @apply border-b border-neutral-200;
+    }
+
+    tfoot {
+      @apply border-t border-neutral-200;
+    }
+
+    tr {
+      @apply border-y border-neutral-200 first:border-t-0 last:border-b-0;
+    }
+
+    th {
+      @apply align-bottom font-semibold;
+    }
+
+    td,
+    th {
+      @apply p-2 first:pl-0 last:pr-0;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p {
+        @apply my-2 first:mt-0 last:mb-0;
+      }
+    }
+  }
+
+  /* Typography */
+
+  del {
+    @apply line-through opacity-60;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply my-4 font-semibold empty:hidden;
+  }
+
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+  h4 {
+    @apply text-base;
+  }
+  h5 {
+    @apply text-sm;
+  }
+
+  p {
+    @apply my-4 empty:hidden leading-relaxed;
+  }
+
+  hr {
+    @apply my-4 border-muted;
+  }
+
+  a {
+    @apply text-primary underline;
+  }
 }
