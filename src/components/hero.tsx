@@ -8,7 +8,7 @@ export const Hero = () => {
       id="hero"
       className="flex flex-col justify-center py-20 bg-primary/10 gap-10 md:gap-20"
     >
-      <Container className="flex flex-col items-center gap-8 max-w-screen-md">
+      <Container className="flex flex-col items-center gap-8 md:max-w-screen-md">
         <div className="space-y-6">
           <Typography
             size="heading1"
@@ -36,7 +36,7 @@ export const Hero = () => {
           </LinkButton>
         </div>
       </Container>
-      <Container className="max-w-screen-lg">
+      <Container className="md:max-w-screen-lg">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/hero-image.webp"

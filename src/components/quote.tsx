@@ -4,7 +4,7 @@ import { Typography } from "./typography";
 export const Quote = () => {
   return (
     <section id="quote" className="py-20 bg-muted-light">
-      <Container className="max-w-screen-md space-y-6">
+      <Container className="md:max-w-screen-md space-y-6">
         <Typography size="heading3" className="text-center font-medium" as="h4">
           &quot;Creativity is a fundamental aspect of being human. It&apos;s our
           birthright. And it&apos;s for all of us.&quot;

@@ -6,7 +6,7 @@ import { Typography } from "./typography";
 export const Faq = () => {
   return (
     <section id="faq" className="py-20 bg-muted-light">
-      <Container className="max-w-screen-md flex flex-col gap-10 md:gap-20">
+      <Container className="md:max-w-screen-md flex flex-col gap-10 md:gap-20">
         <Typography size="heading2" className="text-center" as="h2">
           FAQs
         </Typography>
