@@ -57,7 +57,7 @@ export const DownloadButton = ({ assets }: DownloadButtonProps) => {
 
     setPlatform(platform);
     setDownloadUrl(asset.downloadUrl);
-  }, []);
+  }, [assets]);
 
   if (!platform || !downloadUrl) return null;
 

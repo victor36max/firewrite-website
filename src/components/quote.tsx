@@ -6,8 +6,8 @@ export const Quote = () => {
     <section id="quote" className="py-20 bg-muted-light">
       <Container className="max-w-screen-md space-y-6">
         <Typography size="heading3" className="text-center font-medium" as="h4">
-          "Creativity is a fundamental aspect of being human. It's our
-          birthright. And it's for all of us."
+          &quot;Creativity is a fundamental aspect of being human. It&apos;s our
+          birthright. And it&apos;s for all of us.&quot;
         </Typography>
         <Typography size="bodyMedium" className="text-center">
           The Creative Act: A Way of Being, Rick Rubin

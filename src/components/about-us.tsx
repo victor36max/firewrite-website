@@ -14,9 +14,9 @@ export const AboutUs = () => {
           <br />
           <br />
           Kelly has been a storyteller at heart since a young age, but for
-          years, her own inner critic stood in the way. She's building Firewrite
-          to create the magical space she needed to enter the writing flow, and
-          to build a consistent writing habit.
+          years, her own inner critic stood in the way. She&apos;s building
+          Firewrite to create the magical space she needed to enter the writing
+          flow, and to build a consistent writing habit.
           <br />
           <br />
           Victor is a developer who wants to start writing to share his
@@ -24,8 +24,9 @@ export const AboutUs = () => {
           enabler to help him find his writing voice.
           <br />
           <br />
-          Together, we're building the tool we needed—a calm space for focus,
-          with an AI ally to help you find and refine your own unique voice.
+          Together, we&apos;re building the tool we needed—a calm space for
+          focus, with an AI ally to help you find and refine your own unique
+          voice.
         </Typography>
       </Container>
     </section>

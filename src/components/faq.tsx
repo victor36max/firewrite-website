@@ -1,5 +1,5 @@
 import { Accordion } from "./accordion";
-import { Button, LinkButton } from "./button";
+import { LinkButton } from "./button";
 import { Container } from "./container";
 import { Typography } from "./typography";
 

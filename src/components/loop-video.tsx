@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 
-interface LoopVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {}
-
-export const LoopVideo = (props: LoopVideoProps) => {
+export const LoopVideo = (
+  props: React.VideoHTMLAttributes<HTMLVideoElement>
+) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {

@@ -13,6 +13,7 @@ export const WritingAlly = () => {
           />
         </div>
         <div className="flex flex-col gap-8 md:flex-1">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/writing-ally.svg"
             alt="Writing Ally"
@@ -23,8 +24,8 @@ export const WritingAlly = () => {
               Your AI Writing Ally, Always on Your Side
             </Typography>
             <Typography size="bodyMedium">
-              Get a gentle nudge when you're stuck, instant feedback to improve
-              your prose, and a research assistant that understands your
+              Get a gentle nudge when you&apos;re stuck, instant feedback to
+              improve your prose, and a research assistant that understands your
               context. All designed to support your voice, not override it.
             </Typography>
           </div>

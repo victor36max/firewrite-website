@@ -1,4 +1,4 @@
-import { Button, LinkButton } from "./button";
+import { LinkButton } from "./button";
 import { Container } from "./container";
 import { Typography } from "./typography";
 
@@ -37,6 +37,7 @@ export const Hero = () => {
         </div>
       </Container>
       <Container className="max-w-screen-lg">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/hero-image.webp"
           alt="Hero Image"

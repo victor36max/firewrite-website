@@ -1,8 +1,8 @@
-import { MdScreenshot, MdScreenshotMonitor } from "react-icons/md";
+import { MdScreenshotMonitor } from "react-icons/md";
 import { Container } from "./container";
 import { Typography } from "./typography";
 import { LuCode, LuWifiOff } from "react-icons/lu";
-import { PiMarkdownLogo, PiMarkdownLogoThin } from "react-icons/pi";
+import { PiMarkdownLogo } from "react-icons/pi";
 import { LoopVideo } from "./loop-video";
 
 export const OtherFeatures = () => {
@@ -31,8 +31,8 @@ export const OtherFeatures = () => {
               Write Anywhere
             </Typography>
             <Typography size="bodyRegular">
-              Your work saves locally, even when you're offline (AI available
-              online only).
+              Your work saves locally, even when you&apos;re offline (AI
+              available online only).
             </Typography>
           </div>
           <div className="space-y-4">

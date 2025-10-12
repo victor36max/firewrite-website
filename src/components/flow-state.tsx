@@ -13,6 +13,7 @@ export const FlowState = () => {
           />
         </div>
         <div className="flex flex-col gap-8 md:flex-1">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/flow-state.svg"
             alt="Flow State"
