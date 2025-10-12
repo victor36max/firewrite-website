@@ -16,8 +16,9 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "Firewrite",
-  description: "A modern, open-source, and cross-platform writing app.",
+  title: "Firewrite - Where Writing Feels Magical",
+  description:
+    "A minimalist desktop writing app where AI elevates your voice, never replaces it. Stay in control while writing faster and better.",
 };
 
 export default function RootLayout({
