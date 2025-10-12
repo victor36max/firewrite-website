@@ -28,5 +28,15 @@ export const LoopVideo = (
     };
   }, []);
 
-  return <video ref={videoRef} preload="metadata" loop muted {...props} />;
+  return (
+    <video
+      ref={videoRef}
+      preload="metadata"
+      loop
+      muted
+      playsInline
+      controls={false}
+      {...props}
+    />
+  );
 };
