@@ -21,7 +21,7 @@ const getPlatformFromExtension = (extension: string): Platform | null => {
 };
 
 const parseAsset = (name: string, downloadUrl: string): ParsedAsset | null => {
-  if (name.endsWith(".blockmap")) return null;
+  if (name.endsWith(".blockmap") || name.endsWith(".zip")) return null;
   const sanitizedName = name.replace("-setup", "");
 
   let architecture: Architecture | null = null;
