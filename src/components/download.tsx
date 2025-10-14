@@ -1,7 +1,5 @@
 import { Container } from "@/components/container";
 import { Typography } from "@/components/typography";
-import { cn, getPlatformDisplayName, trackEvent } from "@/utils";
-import Link from "next/link";
 import { LuDownload } from "react-icons/lu";
 import {
   Platform,
