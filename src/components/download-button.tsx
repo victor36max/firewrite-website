@@ -4,15 +4,14 @@ import { Architecture, ParsedAsset, Platform } from "@/types";
 import { useEffect, useState } from "react";
 import { UAParser } from "ua-parser-js";
 import { LinkButton } from "./button";
-import { getPlatformDisplayName } from "@/utils";
+import { getPlatformDisplayName, trackEvent } from "@/utils";
 
 interface DownloadButtonProps {
   assets: Record<Platform, ParsedAsset[]>;
 }
 
 export const DownloadButton = ({ assets }: DownloadButtonProps) => {
-  const [platform, setPlatform] = useState<Platform | null>(null);
-  const [downloadUrl, setDownloadUrl] = useState<string>("");
+  const [asset, setAsset] = useState<ParsedAsset | null>(null);
 
   useEffect(() => {
     const uaParser = new UAParser();
@@ -55,15 +54,24 @@ export const DownloadButton = ({ assets }: DownloadButtonProps) => {
 
     if (!asset) return;
 
-    setPlatform(platform);
-    setDownloadUrl(asset.downloadUrl);
+    setAsset(asset);
   }, [assets]);
 
-  if (!platform || !downloadUrl) return null;
+  if (!asset) return null;
 
   return (
-    <LinkButton href={downloadUrl} variant="primary">
-      Download for {getPlatformDisplayName(platform)}
+    <LinkButton
+      href={asset.downloadUrl}
+      variant="primary"
+      onClick={() =>
+        trackEvent("download-desktop-app", {
+          platform: asset.platform,
+          architecture: asset.architecture,
+          extension: asset.extension,
+        })
+      }
+    >
+      Download for {getPlatformDisplayName(asset.platform)}
     </LinkButton>
   );
 };

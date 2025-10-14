@@ -1,6 +1,6 @@
 import clsx, { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { Platform } from "./types";
+import { Platform, TrackingEvents } from "./types";
 
 export const cn = (...classes: ClassValue[]): string => {
   return twMerge(clsx(classes));
@@ -30,4 +30,12 @@ export const getPlatformDisplayName = (platform: Platform) => {
     case "linux":
       return "Linux";
   }
+};
+
+export const trackEvent = <T extends keyof TrackingEvents>(
+  event: T,
+  properties: TrackingEvents[T]
+) => {
+  if (typeof window === "undefined" || !window.gtag) return;
+  window.gtag("event", event, properties);
 };

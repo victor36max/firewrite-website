@@ -1,6 +1,6 @@
 import { Container } from "@/components/container";
 import { Typography } from "@/components/typography";
-import { cn, getPlatformDisplayName } from "@/utils";
+import { cn, getPlatformDisplayName, trackEvent } from "@/utils";
 import Link from "next/link";
 import { LuDownload } from "react-icons/lu";
 import {
@@ -12,6 +12,7 @@ import {
 } from "@/types";
 import { DownloadButton } from "./download-button";
 import { LinkButton } from "./button";
+import { DownloadAssets } from "./download-assets";
 
 const getPlatformFromExtension = (extension: string): Platform | null => {
   if (["deb", "AppImage"].includes(extension)) return "linux" as const;
@@ -81,34 +82,6 @@ export const Download = async () => {
       return acc;
     }, {} as Record<Platform, ParsedAsset[]>);
 
-  const getAssetDisplayName = (asset: ParsedAsset) => {
-    const displayName = (() => {
-      switch (asset.extension) {
-        case "deb":
-          return "Linux .deb";
-        case "AppImage":
-          return "Linux AppImage";
-        case "dmg":
-          return "Mac";
-        case "exe":
-          return "Windows";
-        default:
-          return asset.extension.toUpperCase();
-      }
-    })();
-
-    const architectureDisplayName = (() => {
-      switch (asset.architecture) {
-        case "universal":
-          return "Universal";
-        default:
-          return asset.architecture.toUpperCase();
-      }
-    })();
-
-    return `${displayName} (${architectureDisplayName})`;
-  };
-
   return (
     <section id="download" className="py-20">
       <Container className="flex flex-col gap-10 md:flex-row md:gap-20">
@@ -132,38 +105,8 @@ export const Download = async () => {
             </LinkButton>
           </div>
         </div>
-        <div className="space-y-8 flex-1">
-          {["macos" as const, "windows" as const, "linux" as const].map(
-            (platform) => (
-              <div className="flex-1" key={platform}>
-                <Typography size="heading4" className="font-medium py-5">
-                  {getPlatformDisplayName(platform)}
-                </Typography>
-                <div className="border border-muted rounded-lg">
-                  {parsedAssets[platform]
-                    .sort((a, b) =>
-                      a.architecture.localeCompare(b.architecture)
-                    )
-                    .sort((a, b) => b.extension.localeCompare(a.extension))
-                    .map((asset, index) => (
-                      <Link
-                        key={asset.downloadUrl}
-                        href={asset.downloadUrl}
-                        className={cn(
-                          "flex flex-row gap-2 items-center p-4 border-muted justify-between hover:bg-muted-light",
-                          index !== 0 && "border-t"
-                        )}
-                      >
-                        <Typography size="bodyMedium" className="font-medium">
-                          {getAssetDisplayName(asset)}
-                        </Typography>
-                        <LuDownload className="w-4 h-4" />
-                      </Link>
-                    ))}
-                </div>
-              </div>
-            )
-          )}
+        <div className="flex-1">
+          <DownloadAssets assets={parsedAssets} />
         </div>
       </Container>
     </section>

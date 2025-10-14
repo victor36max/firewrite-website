@@ -1,3 +1,13 @@
+declare global {
+  interface Window {
+    gtag?: (
+      command: "event" | "config" | "set",
+      action: string,
+      params?: Record<string, any>
+    ) => void;
+  }
+}
+
 export type Release = {
   tag_name: string;
   assets: {
@@ -13,6 +23,14 @@ export type Extension = "deb" | "dmg" | "exe" | "AppImage";
 export type ParsedAsset = {
   platform: Platform;
   architecture: Architecture;
-  extension: string;
+  extension: Extension;
   downloadUrl: string;
+};
+
+export type TrackingEvents = {
+  "download-desktop-app": {
+    platform: Platform;
+    architecture: Architecture;
+    extension: Extension;
+  };
 };
