@@ -36,13 +36,13 @@ export default function NavBar() {
       <Container className="flex flex-row justify-between items-center py-4">
         <Link href="/">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-
           <img
             src="/images/logo.png"
             className="hidden md:block h-8"
             alt="logo"
           />
           <div className="block md:hidden -my-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/images/icon.svg" className="w-7" alt="logo" />
           </div>
         </Link>

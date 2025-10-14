@@ -62,7 +62,10 @@ const parseAsset = (name: string, downloadUrl: string): ParsedAsset | null => {
 
 export const Download = async () => {
   const response = await fetch(
-    "https://api.github.com/repos/victor36max/firewrite/releases/latest"
+    "https://api.github.com/repos/victor36max/firewrite/releases/latest",
+    {
+      cache: "no-store",
+    }
   );
   const data = (await response.json()) as Release;
   const parsedAssets = data.assets
