@@ -28,14 +28,14 @@ const parseAsset = (name: string, downloadUrl: string): ParsedAsset | null => {
   let extension: Extension | null = null;
 
   const universalMatches = sanitizedName.match(
-    /^.+\-[0-9+]\.[0-9+]\.[0-9+]\.(.+)$/
+    /^.+\-[0-9+]\.[0-9+]\.[0-9+]\-\w+\.(\w+)$/
   );
   if (universalMatches) {
     architecture = "universal";
     extension = universalMatches[1] as Extension;
   } else {
     const withArchitectureMatches = sanitizedName.match(
-      /^.+\-[0-9+]\.[0-9+]\.[0-9+]-(.+)\.(.+)$/
+      /^.+\-[0-9+]\.[0-9+]\.[0-9+]\-\w+\-(.+)\.(\w+)$/
     );
     if (withArchitectureMatches) {
       architecture = withArchitectureMatches[1] as Architecture;
@@ -64,7 +64,10 @@ export const Download = async () => {
   const response = await fetch(
     "https://api.github.com/repos/victor36max/firewrite/releases/latest",
     {
-      cache: "no-store",
+      cache: "force-cache",
+      next: {
+        revalidate: 60 * 5, // 5 minutes
+      },
     }
   );
   const data = (await response.json()) as Release;
