@@ -11,10 +11,19 @@ export default async function BlogPage({
 }: {
   searchParams: { publishedBefore?: string };
 }) {
-  const posts = await client.fetch(POSTS_QUERY, {
-    publishedBefore: publishedBefore || new Date().toISOString(),
-    limit: 12,
-  });
+  const posts = await client.fetch(
+    POSTS_QUERY,
+    {
+      publishedBefore: publishedBefore || new Date().toISOString(),
+      limit: 12,
+    },
+    {
+      cache: "force-cache",
+      next: {
+        revalidate: 60 * 5, // 5 minutes
+      },
+    }
+  );
 
   return (
     <Container className="py-10 md:py-20 space-y-10">

@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { Container } from "./container";
 import { FaGithub } from "react-icons/fa6";
 import { LinkButton } from "./button";
+import { usePathname } from "next/navigation";
 
 const Menu = () => {
   return (
@@ -31,6 +34,12 @@ const Menu = () => {
 };
 
 export default function NavBar() {
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/studio")) {
+    return null;
+  }
+
   return (
     <nav className="bg-background sticky top-0 z-10">
       <Container className="flex flex-row justify-between items-center py-4">

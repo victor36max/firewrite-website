@@ -12,7 +12,16 @@ export default async function BlogPostPage({
 }: {
   params: { slug: string };
 }) {
-  const post = await client.fetch<Post>(POST_QUERY, { slug: params.slug });
+  const post = await client.fetch(
+    POST_QUERY,
+    { slug: params.slug },
+    {
+      cache: "force-cache",
+      next: {
+        revalidate: 60 * 5, // 5 minutes
+      },
+    }
+  );
   if (!post) {
     return notFound();
   }
