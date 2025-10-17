@@ -27,14 +27,14 @@ const parseAsset = (name: string, downloadUrl: string): ParsedAsset | null => {
   let extension: Extension | null = null;
 
   const universalMatches = sanitizedName.match(
-    /^.+\-[0-9+]\.[0-9+]\.[0-9+]\-\w+\.(\w+)$/
+    /^.+\-[0-9]+\.[0-9]+\.[0-9]+\-\w+\.(\w+)$/
   );
   if (universalMatches) {
     architecture = "universal";
     extension = universalMatches[1] as Extension;
   } else {
     const withArchitectureMatches = sanitizedName.match(
-      /^.+\-[0-9+]\.[0-9+]\.[0-9+]\-\w+\-(.+)\.(\w+)$/
+      /^.+\-[0-9]+\.[0-9]+\.[0-9]+\-\w+\-(.+)\.(\w+)$/
     );
     if (withArchitectureMatches) {
       architecture = withArchitectureMatches[1] as Architecture;

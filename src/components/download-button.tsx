@@ -44,7 +44,7 @@ export const DownloadButton = ({ assets }: DownloadButtonProps) => {
       }
     })();
 
-    const asset = assets[platform].find((asset) => {
+    const asset = assets[platform]?.find((asset) => {
       if (platform === "linux") {
         return asset.architecture === architecture && asset.extension === "deb";
       }

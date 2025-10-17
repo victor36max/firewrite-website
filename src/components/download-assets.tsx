@@ -48,7 +48,7 @@ export const DownloadAssets = ({ assets }: DownloadAssetsProps) => {
               {getPlatformDisplayName(platform)}
             </Typography>
             <div className="border border-muted rounded-lg">
-              {assets[platform]
+              {(assets[platform] || [])
                 .sort((a, b) => a.architecture.localeCompare(b.architecture))
                 .sort((a, b) => b.extension.localeCompare(a.extension))
                 .map((asset, index) => (
