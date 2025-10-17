@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { type SanityDocument } from "next-sanity";
 
 import { client } from "@/sanity/lib/client";
-import { Post } from "@/sanity/types";
 import { POSTS_QUERY } from "@/sanity/lib/queries";
 import { Container } from "@/components/container";
 import { Typography } from "@/components/typography";
@@ -13,7 +11,7 @@ export default async function BlogPage({
 }: {
   searchParams: { publishedBefore?: string };
 }) {
-  const posts = await client.fetch<Post[]>(POSTS_QUERY, {
+  const posts = await client.fetch(POSTS_QUERY, {
     publishedBefore: publishedBefore || new Date().toISOString(),
     limit: 12,
   });
@@ -30,6 +28,7 @@ export default async function BlogPage({
             key={post._id}
             className="space-y-4"
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={urlFor(post.featuredImage).url()}
               alt={post.title}

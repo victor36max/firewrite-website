@@ -235,15 +235,9 @@ export type AllSanitySchemaTypes = Post | Author | Category | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: POSTS_QUERY
-// Query: *[_type == "post" && publishedAt < now() && publishedAt > $publishedBefore]|order(publishedAt desc)[0...$limit]
+// Query: *[_type == "post" && publishedAt < $publishedBefore]|order(publishedAt desc)[0...$limit]{    _id,    featuredImage,    title,    slug,    publishedAt,  }
 export type POSTS_QUERYResult = Array<{
   _id: string;
-  _type: "post";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  slug: Slug;
   featuredImage: {
     asset?: {
       _ref: string;
@@ -256,50 +250,8 @@ export type POSTS_QUERYResult = Array<{
     crop?: SanityImageCrop;
     _type: "image";
   };
-  content: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-    _key: string;
-  }>;
-  author: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
-  tags?: Array<string>;
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
+  title: string;
+  slug: Slug;
   publishedAt: string;
 }>;
 // Variable: POST_QUERY
@@ -375,7 +327,7 @@ export type POST_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"post\" && publishedAt < now() && publishedAt > $publishedBefore]|order(publishedAt desc)[0...$limit]": POSTS_QUERYResult;
+    "*[_type == \"post\" && publishedAt < $publishedBefore]|order(publishedAt desc)[0...$limit]{\n    _id,\n    featuredImage,\n    title,\n    slug,\n    publishedAt,\n  }": POSTS_QUERYResult;
     "*[_type == \"post\" && slug.current == $slug][0]": POST_QUERYResult;
   }
 }

@@ -19,6 +19,7 @@ export default async function BlogPostPage({
 
   return (
     <Container className="py-10 md:py-20 space-y-10 md:max-w-screen-md">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={urlFor(post.featuredImage).url()}
         alt={post.title}
