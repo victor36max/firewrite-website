@@ -3,7 +3,7 @@ import { Typography } from "@/components/typography";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { POST_QUERY } from "@/sanity/lib/queries";
-import { Post } from "@/sanity/types";
+// import { Post } from "@/sanity/types";
 import { PortableText } from "next-sanity";
 import { notFound } from "next/navigation";
 

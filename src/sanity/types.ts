@@ -322,6 +322,12 @@ export type POST_QUERYResult = {
   }>;
   publishedAt: string;
 } | null;
+// Variable: SITE_MAP_QUERY
+// Query: *[_type == "post"] {    slug,    _updatedAt  }
+export type SITE_MAP_QUERYResult = Array<{
+  slug: Slug;
+  _updatedAt: string;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -329,5 +335,6 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"post\" && publishedAt < $publishedBefore]|order(publishedAt desc)[0...$limit]{\n    _id,\n    featuredImage,\n    title,\n    slug,\n    publishedAt,\n  }": POSTS_QUERYResult;
     "*[_type == \"post\" && slug.current == $slug][0]": POST_QUERYResult;
+    "*[_type == \"post\"] {\n    slug,\n    _updatedAt\n  }": SITE_MAP_QUERYResult;
   }
 }
